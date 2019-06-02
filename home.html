@@ -54,12 +54,7 @@
 <div style="margin-left:25%;padding:1px 16px;height:1000px;" ng-view></div>
 <script>
 var app = angular.module("myApp", ["ngRoute","ngAnimate"]);
-app.all("/*", function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
-    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
-    return next();
-});
+
 
 app.config(function($routeProvider,$sceDelegateProvider) {
 $sceDelegateProvider.resourceUrlWhitelist([
