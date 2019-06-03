@@ -39,7 +39,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 
 <body ng-app="myApp">
-<div ng-include="london.htm"></div>
 <div id="mySidenav" class="sidenav">
 <a href="#/!">Main</a>
 <a href="#!red">Red</a>
@@ -47,19 +46,25 @@
 <a href="#!blue">Blue</a>
 <a href="#!london">london</a>
 <a href="#!paris">paris</a>
-
-<div ng-include="'paris.htm'"></div>
-
 </div>
-<div style="margin-left:25%;padding:1px 16px;height:1000px;" ng-view></div>
+
+
+<div class="containerDescription"> Desc : 
+<p>
+<textarea ng-model="data.description" style="height:120px; width:200px;"></textarea>
+</p>
+</div>
+
+<div style="margin-left:25%;padding:1px 16px;height:1000px;" ng-view>
+</div>
+
+
 <script>
 var app = angular.module("myApp", ["ngRoute","ngAnimate"]);
 
 
 app.config(function($routeProvider,$sceDelegateProvider) {
-$sceDelegateProvider.resourceUrlWhitelist([
-    'paris.htm'
-  ]);
+
   $routeProvider
   .when("/", {
     template : "<h1>Main</h1><p>Click on the links to change this content</p>"
@@ -74,7 +79,7 @@ $sceDelegateProvider.resourceUrlWhitelist([
     template : "<h1>Blue</h1><p>Tomatoes contain around 95% water.</p>"
   })
   .when("/london", {
-   
+   templateUrl : "london.htm",
     controller : "londonCtrl"
   })
   .when("/paris", {
@@ -93,6 +98,7 @@ $http.get("london.htm")
   });
   $scope.msg = "I love London";
 });
+
 app.controller("parisCtrl", function ($scope) {
   $scope.msg = "I love Paris";
 });
